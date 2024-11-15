@@ -1,6 +1,9 @@
+// components/Faq.tsx
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
-
 import {
   Accordion,
   AccordionItem,
@@ -9,10 +12,16 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Modal } from "@/components/modal"; // Import the Modal component
 
 export function Faq() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
-    <section className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
+    <section id="faqs" className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
       <div className="flex flex-col gap-3">
         <span className="font-bold uppercase text-primary text-center">Faq</span>
         <h2 className="font-heading text-3xl font-semibold sm:text-4xl text-center">
@@ -34,13 +43,13 @@ export function Faq() {
             industry-specific expertise for your social media needs.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-0" className="border-b-0">
+        <AccordionItem value="item-1" className="border-b-0">
           <AccordionTrigger className="py-6 text-left text-lg hover:no-underline">
             How do you ensure responsive communication and what reporting can you expect?
           </AccordionTrigger>
           <AccordionContent className="text-lg text-muted-foreground">
             Our team works in shifts aligned with US time zones, ensuring coverage during your
-            business hours. We guarantee response times within 1 hours for all client inquiries,
+            business hours. We guarantee response times within 1 hour for all client inquiries,
             with our English-proficient staff ensuring clear, effective communication at all times.
             <br />
             <br />
@@ -50,7 +59,7 @@ export function Faq() {
             sentiment.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-0" className="border-b-0">
+        <AccordionItem value="item-2" className="border-b-0">
           <AccordionTrigger className="py-6 text-left text-lg hover:no-underline">
             What types of social media platforms do you manage?
           </AccordionTrigger>
@@ -61,7 +70,7 @@ export function Faq() {
             basis, tailoring our approach to your specific needs and target audience.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-0" className="border-b-0">
+        <AccordionItem value="item-3" className="border-b-0">
           <AccordionTrigger className="py-6 text-left text-lg hover:no-underline">
             What is the onboarding process like for new clients?
           </AccordionTrigger>
@@ -73,7 +82,7 @@ export function Faq() {
             on all processes.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-0" className="border-b-0">
+        <AccordionItem value="item-4" className="border-b-0">
           <AccordionTrigger className="py-6 text-left text-lg hover:no-underline">
             Do you create custom content for each property, or use templates?
           </AccordionTrigger>
@@ -84,24 +93,8 @@ export function Faq() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <section className="container flex flex-col items-center gap-6 py-24 sm:gap-10">
-        <h2 className="font-heading text-3xl font-semibold sm:text-4xl max-w-xl sm:leading-tight text-center">
-          Maximize engagement. Optimize presence - at an unbeatable price.
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-xl text-center">
-          Elevate your social media impact without breaking the bank. Expert management across key
-          platforms. Tailored content that resonates with your audience.
-        </p>
-        <Button
-          size="lg"
-          asChild
-          variant="default"
-          className="h-12 cursor-pointer border-border text-base sm:h-14 sm:px-10"
-        >
-          <Link href="#">Get Started</Link>
-        </Button>
-      </section>
-      <section className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
+
+      <section id="pricing" className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
         <div className="flex flex-col gap-3">
           <span className="font-bold uppercase text-primary text-center">Pricing</span>
           <h2 className="font-heading text-3xl font-semibold sm:text-4xl text-center">
@@ -116,13 +109,13 @@ export function Faq() {
             <CardContent className="divide-y p-0">
               <div className="flex flex-col items-center px-7 py-10">
                 <h4 className="font-heading text-2xl font-semibold text-foreground">Basic</h4>
-                <p className="mt-2 text-muted-foreground">For side project.</p>
+                <p className="mt-2 text-muted-foreground">For side projects.</p>
                 <div className="mt-5">
                   <span className="font-heading text-5xl font-semibold">$50</span>
                   <span className="text-sm"> /month</span>
                 </div>
-                <Button size="lg" asChild className="mt-10 w-full">
-                  <a href="#">Get started</a>
+                <Button size="lg" onClick={openModal} className="mt-10 w-full">
+                  Get started
                 </Button>
               </div>
               <ul className="space-y-2 px-7 py-10">
@@ -145,6 +138,7 @@ export function Faq() {
               </ul>
             </CardContent>
           </Card>
+
           <Card className="relative shadow-lg border-2 border-primary">
             <CardContent className="divide-y p-0">
               <div className="flex flex-col items-center px-7 py-10">
@@ -157,8 +151,8 @@ export function Faq() {
                   <span className="font-heading text-5xl font-semibold">$100</span>
                   <span className="text-sm"> /month</span>
                 </div>
-                <Button size="lg" asChild className="mt-10 w-full">
-                  <a href="#">Get started</a>
+                <Button size="lg" onClick={openModal} className="mt-10 w-full">
+                  Get started
                 </Button>
               </div>
               <ul className="space-y-2 px-7 py-10">
@@ -181,19 +175,18 @@ export function Faq() {
               </ul>
             </CardContent>
           </Card>
+
           <Card className="relative shadow-lg">
             <CardContent className="divide-y p-0">
               <div className="flex flex-col items-center px-7 py-10">
-                <h4 className="font-heading text-2xl font-semibold text-foreground">
-                  Full-time account
-                </h4>
-                <p className="mt-2 text-muted-foreground">For truly customized request.</p>
+                <h4 className="font-heading text-2xl font-semibold text-foreground">Full-time account</h4>
+                <p className="mt-2 text-muted-foreground">For fully customized requests.</p>
                 <div className="mt-5">
                   <span className="font-heading text-5xl font-semibold">$500</span>
                   <span className="text-sm"> /month</span>
                 </div>
-                <Button size="lg" asChild className="mt-10 w-full">
-                  <a href="#">Get started</a>
+                <Button size="lg" onClick={openModal} className="mt-10 w-full">
+                  Get started
                 </Button>
               </div>
               <ul className="space-y-2 px-7 py-10">
@@ -207,9 +200,7 @@ export function Faq() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Check size={24} className="text-primary" />
-                  <span className="text-muted-foreground">
-                    Daily engagement monitoring and response
-                  </span>
+                  <span className="text-muted-foreground">Daily engagement monitoring</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Check size={24} className="text-primary" />
@@ -224,6 +215,10 @@ export function Faq() {
           </Card>
         </div>
       </section>
+
+      {/* Modal Component */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </section>
   );
 }
+

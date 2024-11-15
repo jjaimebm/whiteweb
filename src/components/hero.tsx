@@ -1,14 +1,22 @@
+// components/Hero.tsx
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/modal"; // Import the Modal component
 
 export function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <section className="relative z-0 flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-background">
       <div className="absolute top-0 isolate z-0 flex w-full flex-1 items-start justify-center">
+        {/* Motion effects and background gradients */}
         <motion.div
           style={{
             backgroundImage: "conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
@@ -81,12 +89,19 @@ export function Hero() {
             >
               <Link href="#">Learn More</Link>
             </Button>
-            <Button size="lg" asChild className="h-12 cursor-pointer text-base sm:h-14 sm:px-10">
-              <Link href="#">Get Started</Link>
+            <Button
+              size="lg"
+              onClick={openModal} // Set onClick to open the modal
+              className="h-12 cursor-pointer text-base sm:h-14 sm:px-10"
+            >
+              Get Started
             </Button>
           </div>
         </div>
       </motion.div>
+      
+      {/* Modal Component */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </section>
   );
 }

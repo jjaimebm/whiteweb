@@ -1,10 +1,21 @@
+// components/Header.tsx
+
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
 import { MobileNavbar } from "@/components/mobile-navbar";
+import { Modal } from "@/components/modal";
+
 
 export function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <header className="container flex items-center justify-between gap-10 py-4">
       <Link href="/" className="flex items-center gap-3 flex-1">
@@ -18,66 +29,59 @@ export function Header() {
       </Link>
       <nav className="hidden items-center gap-10 md:flex flex-1 justify-center">
         <Link
-          href="/docs"
+          href="#services"
           className="flex cursor-pointer items-center text-lg font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-sm"
         >
           Services
         </Link>
         <Link
-          href="/blog"
+          href="#faqs"
           className="flex cursor-pointer items-center text-lg font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-sm"
         >
           FAQs
         </Link>
         <Link
-          href="/pricing"
+          href="#pricing"
           className="flex cursor-pointer items-center text-lg font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-sm"
         >
           Pricing
         </Link>
       </nav>
       <div className="hidden items-center gap-2 md:flex flex-1 justify-end">
-        <Button asChild>
-          <Link href="#" className="cursor-pointer">
-            Get Started
-          </Link>
+        <Button onClick={openModal} className="cursor-pointer">
+          Get Started
         </Button>
       </div>
       <MobileNavbar>
         <div className="rounded-b-lg bg-background py-4 container text-foreground shadow-xl">
           <nav className="flex flex-col gap-1 pt-2">
             <Link
-              href="/about"
+              href="#services"
               className="flex w-full cursor-pointer items-center rounded-md p-2 font-medium text-muted-foreground hover:text-foreground"
             >
-              About
+              Services
             </Link>
             <Link
-              href="/docs"
+              href="#faqs"
               className="flex w-full cursor-pointer items-center rounded-md p-2 font-medium text-muted-foreground hover:text-foreground"
             >
-              Docs
+              FAQs
             </Link>
             <Link
-              href="/blog"
-              className="flex w-full cursor-pointer items-center rounded-md p-2 font-medium text-muted-foreground hover:text-foreground"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/pricing"
+              href="#pricing"
               className="flex w-full cursor-pointer items-center rounded-md p-2 font-medium text-muted-foreground hover:text-foreground"
             >
               Pricing
             </Link>
-            <Button size="lg" asChild className="mt-2 w-full">
-              <Link href="#" className="cursor-pointer">
-                Get Started
-              </Link>
+            <Button onClick={openModal} size="lg" className="mt-2 w-full">
+              Get Started
             </Button>
           </nav>
         </div>
       </MobileNavbar>
+
+      {/* Modal Component */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </header>
   );
 }

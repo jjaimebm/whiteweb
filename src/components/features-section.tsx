@@ -2,17 +2,17 @@ import { Frame, Gauge, Download, LayoutDashboard } from "lucide-react";
 
 export function Features() {
   return (
-    <section className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
+    <section id="services" className="container flex flex-col items-center gap-6 py-24 sm:gap-7">
       <div className="flex flex-col gap-3">
         <span className="font-bold uppercase text-primary text-center">Services</span>
         <h2 className="font-heading text-3xl font-semibold sm:text-4xl text-center">
-          Engage Social Media Effectively and Scale you Presence Seamlessly
+          Engage Social Media Effectively and Scale your Presence Seamlessly
         </h2>
       </div>
       <p className="text-lg text-muted-foreground max-w-2xl text-center">
-        Whitepixel combines community manager expertise with cost effective, outsourced talent to
+        Whitepixel combines community manager expertise with cost-effective, outsourced talent to
         deliver responsive, round-the-clock social media management that grows with your property
-        business
+        business.
       </p>
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-4">
         <div className="group/feature relative flex flex-col py-10 lg:border-r lg:border-l lg:border-b">
