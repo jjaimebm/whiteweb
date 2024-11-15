@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/jbarrenechea/Documents/Whitewebsite/src/app/layout\":[\"static/media/8de40de8211748f7-s.p.woff2\",\"static/media/a34f9d1faa5f3315-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
